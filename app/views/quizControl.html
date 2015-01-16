@@ -1,0 +1,73 @@
+<div ng-show="inProgress" class="content">
+  <div class="row">
+    <div class="col-sm-11 noPadding" >
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{title}}</h3>
+        </div>
+        <div class="panel-body">
+          <div ng-show="!quizOver">
+
+            <div ng-show="!answerMode">
+              <div ng-show="correctAns" class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok"></span>
+                That is correct!
+              </div>
+              <div ng-show="!correctAns" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-remove"></span>
+                Incorrect.
+              </div>
+            </div>
+
+
+            <h2 id="question">{{question}}</h2>
+
+            <div id="options">
+              <div ng-repeat="option in options">
+                <label>
+                  <input type="radio" name="answer" value="{{option}}">
+                  {{option}}
+                </label>
+              </div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-sm-2 ">
+                <button class="btn btn-lg btn-success" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+                <button class="btn btn-lg btn-success next-question" ng-click="nextQuestion()" ng-show="!answerMode">Next</button>
+              </div>
+              <div class="col-sm-10">
+                <button class="btn btn-primary" type="button">
+                  Score: <span class="badge">{{score}}</span>
+                </button>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <div ng-show="quizOver">
+            <h2>You have completed the quiz.</h2>
+            <h3>Your score was: {{score}} out of {{total}}</h3>
+            <button class="btn btn-lg btn-success" ng-click="reset()">Play again</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="intro" ng-show="!inProgress">
+  <h3>Quiz: {{title}}</h3>
+  <br/>
+  <button class="btn btn-lg btn-success" id="startQuiz" ng-click="start()">
+    <span class="glyphicon glyphicon-play"></span>
+    Start the Quiz
+  </button>
+</div>
